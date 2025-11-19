@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>My Family Hut</title>
+        <style>
+
+        .blue {
+            border-radius: 20px;
+            background-image: url("le-restaurant-est-situe.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 30px 20px;
+            padding: 20px;
+        }
+            input, select, button {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 16px;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 20%;
+        }   
+        .text {
+
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            text-align: center;
+            font-weight: 600;
+            border: 3px solid blanchedalmond;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 24px;
+        }
+        label{
+            font-size: 26px;
+        }
+        h1{
+            text-shadow: 2px 2px 5px white, -2px -2px 5px black, 2px 2px 5px red;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="blue">
+        <div class="text">
+            <h1>My Family Hut</h1>
+            <br><hr><br>
+            <h1>Reserve Your Table</h1>
+            <hr>
+            <form>
+            <label for="fname">Your official Name:   </label>
+            <input type="text" id="name"  placeholder="first name"required>
+            <input type="text" id="lname" placeholder="last name">
+            <br><br>
+            <label for="mail">E-mail:   </label>
+            <input type="email" id="email" placeholder="abc@gmail.com" required><br><br>
+            <label for="conduct">Conduct:   </label>
+            <input type="tel" id="conduct" value="+91 " pattern="^\+91 [0-9]{10}$"required>
+            <br><br>
+            <p>___________________________________________</p><br><br>
+            <label for="no">Number of guestes:  </label>
+            <input type="number" id="no" required>
+            <br><br>
+            <label for="size">Select the Size of the table: </label>
+            <select id="size">
+                <option value="" disabled selected>Select</option>
+                <option value="Banquet tables">Banquet tables</option>
+                <option value="Café tables">Cafe tables</option>
+                <option value="Booth tables">Booth tables</option>
+                <option value="Outdoor/patio tables">Outdoor/patio tables</option>
+                <option value="Communal tables">Communal tables</option>
+            </select><br><br>
+            <label for="nu">Number of tables:   </label>
+            <input type="number" id="nu" placeholder="Enter the number of tables you want">
+            <br><br>
+            <h3>==== Date and Timing ====</h3>
+            <label for="date">Date: </label>
+            <input type="date" id="date" required><br><br>
+            <label for="time">Time: </label>
+            <input type="time" id="time" required><br><br>
+            <button type="button" onclick="table()">Submit</button>
+            <input type="reset" value="clear">
+            </form><br>
+            <h2 id="output"></h2>
+    <script>
+        function table(){
+            const name = document.getElementById("name").value;
+            const lname = document.getElementById("lname").value;
+            const mail = document.getElementById("email").value;
+            const phone = document.getElementById("conduct").value;
+            const guest = parseInt(document.getElementById("no").value);
+            const tableType = document.getElementById("size").value;
+            let number = parseInt(document.getElementById("nu").value);
+            const date = document.getElementById("date").value;
+            const time = document.getElementById("time").value;
+
+
+            const capacityPerTable = 4;
+            const requiredTables = (guest / capacityPerTable);
+
+            if (number < requiredTables) {
+                document.getElementById("output").innerHTML =
+                    `<b> Cannot book:</b> You have ${guest} guests.<br>
+                    Each table seats ${capacityPerTable}.<br>
+                    You must book at least <b>${requiredTables}</b> tables.`;
+                return; 
+            }
+
+
+            document.getElementById("output").innerHTML =
+                `Hi ${name} ${lname}<br>
+                 Reservation Confirmed at My Family Hut <br>
+                Guests: ${guest}<br>
+                Table Type: ${tableType}<br>
+                Number of Tables: ${number}<br>
+                Date: ${date}<br>
+                Time: ${time}<br>
+                Email: ${mail}<br>
+                Phone: ${phone}<br><br>
+                 Thank you for booking with us!`;
+        }
+    </script>
+
+
+                <marquee behaviour="scroll" direction="left"></marquee>
+        </div>
+        </div>
+
+    </body>
+</html>
