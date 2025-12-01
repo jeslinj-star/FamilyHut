@@ -1,131 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>My Family Hut</title>
-        <style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Hut Hotel - Online Booking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        .blue {
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
             border-radius: 20px;
-            background-image: url("le-restaurant-est-situe.jpg");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            margin: 30px 20px;
-            padding: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
         }
-            input, select, button {
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            font-size: 16px;
-            padding: 8px;
-            margin: 5px 0 15px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            width: 20%;
-        }   
-        .text {
 
-            background-color: rgba(0, 0, 0, 0.4);
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            padding: 40px;
             text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 40px;
+        }
+
+        .booking-form {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 600;
-            border: 3px solid blanchedalmond;
-            padding: 20px;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+        }
+
+        .booking-table-section h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .booking-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
             border-radius: 10px;
-            font-size: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        label{
-            font-size: 26px;
+
+        .booking-table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
         }
-        h1{
-            text-shadow: 2px 2px 5px white, -2px -2px 5px black, 2px 2px 5px red;
+
+        .booking-table th, .booking-table td {
+            padding: 15px;
+            text-align: left;
         }
-        </style>
-    </head>
-    <body>
-        <div class="blue">
-        <div class="text">
-            <h1>My Family Hut</h1>
-            <br><hr><br>
-            <h1>Reserve Your Table</h1>
-            <hr>
-            <form>
-            <label for="fname">Your official Name:   </label>
-            <input type="text" id="name"  placeholder="first name"required>
-            <input type="text" id="lname" placeholder="last name">
-            <br><br>
-            <label for="mail">E-mail:   </label>
-            <input type="email" id="email" placeholder="abc@gmail.com" required><br><br>
-            <label for="conduct">Conduct:   </label>
-            <input type="tel" id="conduct" value="+91 " pattern="^\+91 [0-9]{10}$"required>
-            <br><br>
-            <p>___________________________________________</p><br><br>
-            <label for="no">Number of guestes:  </label>
-            <input type="number" id="no" required>
-            <br><br>
-            <label for="size">Select the Size of the table: </label>
-            <select id="size">
-                <option value="" disabled selected>Select</option>
-                <option value="Banquet tables">Banquet tables</option>
-                <option value="Café tables">Cafe tables</option>
-                <option value="Booth tables">Booth tables</option>
-                <option value="Outdoor/patio tables">Outdoor/patio tables</option>
-                <option value="Communal tables">Communal tables</option>
-            </select><br><br>
-            <label for="nu">Number of tables:   </label>
-            <input type="number" id="nu" placeholder="Enter the number of tables you want">
-            <br><br>
-            <h3>==== Date and Timing ====</h3>
-            <label for="date">Date: </label>
-            <input type="date" id="date" required><br><br>
-            <label for="time">Time: </label>
-            <input type="time" id="time" required><br><br>
-            <button type="button" onclick="table()">Submit</button>
-            <input type="reset" value="clear">
-            </form><br>
-            <h2 id="output"></h2>
+
+        .booking-table tbody tr {
+            border-bottom: 1px solid #e0e0e0;
+            transition: background-color 0.2s;
+        }
+
+        .booking-table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .booking-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .status {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .status.confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-delete:hover {
+            background: #c82333;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-style: italic;
+        }
+
+        @media (max-width: 968px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .room-price {
+            font-size: 14px;
+            color: #666;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏡 Family Hut Hotel</h1>
+            <p>Book Your Perfect Stay With Us</p>
+        </div>
+
+        <div class="content">
+            <div class="booking-form">
+                <h2>Make a Reservation</h2>
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="guestName">Guest Name</label>
+                        <input type="text" id="guestName" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required placeholder="+91 XXXXX XXXXX">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="roomType">Room Type</label>
+                        <select id="roomType" required>
+                            <option value="">Select Room Type</option>
+                            <option value="Standard Room" data-price="2500">Standard Room - ₹2,500/night</option>
+                            <option value="Deluxe Room" data-price="4000">Deluxe Room - ₹4,000/night</option>
+                            <option value="Family Suite" data-price="6500">Family Suite - ₹6,500/night</option>
+                            <option value="Premium Suite" data-price="8500">Premium Suite - ₹8,500/night</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="checkIn">Check-in Date</label>
+                        <input type="date" id="checkIn" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="checkOut">Check-out Date</label>
+                        <input type="date" id="checkOut" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guests">Number of Guests</label>
+                        <input type="number" id="guests" min="1" max="10" required placeholder="1">
+                    </div>
+
+                    <button type="submit" class="btn-submit">Book Now</button>
+                </form>
+            </div>
+
+            <div class="booking-table-section">
+                <h2>Current Bookings</h2>
+                <table class="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Guest Name</th>
+                            <th>Room Type</th>
+                            <th>Check-in</th>
+                            <th>Check-out</th>
+                            <th>Guests</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingTableBody">
+                        <tr>
+                            <td colspan="7" class="empty-message">No bookings yet. Make your first reservation!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function table(){
-            const name = document.getElementById("name").value;
-            const lname = document.getElementById("lname").value;
-            const mail = document.getElementById("email").value;
-            const phone = document.getElementById("conduct").value;
-            const guest = parseInt(document.getElementById("no").value);
-            const tableType = document.getElementById("size").value;
-            let number = parseInt(document.getElementById("nu").value);
-            const date = document.getElementById("date").value;
-            const time = document.getElementById("time").value;
+        const bookings = [];
+        const form = document.getElementById('bookingForm');
+        const tableBody = document.getElementById('bookingTableBody');
+        const checkInInput = document.getElementById('checkIn');
+        const checkOutInput = document.getElementById('checkOut');
 
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        checkInInput.min = today;
+        checkOutInput.min = today;
 
-            const capacityPerTable = 4;
-            const requiredTables = (guest / capacityPerTable);
+        // Update checkout min date when checkin changes
+        checkInInput.addEventListener('change', function() {
+            checkOutInput.min = this.value;
+            if (checkOutInput.value && checkOutInput.value < this.value) {
+                checkOutInput.value = '';
+            }
+        });
 
-            if (number < requiredTables) {
-                document.getElementById("output").innerHTML =
-                    `<b> Cannot book:</b> You have ${guest} guests.<br>
-                    Each table seats ${capacityPerTable}.<br>
-                    You must book at least <b>${requiredTables}</b> tables.`;
-                return; 
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const booking = {
+                id: Date.now(),
+                guestName: document.getElementById('guestName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                roomType: document.getElementById('roomType').value,
+                checkIn: document.getElementById('checkIn').value,
+                checkOut: document.getElementById('checkOut').value,
+                guests: document.getElementById('guests').value,
+                status: 'Confirmed'
+            };
+
+            bookings.push(booking);
+            renderBookings();
+            form.reset();
+            alert('Booking confirmed! We look forward to hosting you at Family Hut Hotel.');
+        });
+
+        function renderBookings() {
+            if (bookings.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="7" class="empty-message">No bookings yet. Make your first reservation!</td></tr>';
+                return;
             }
 
+            tableBody.innerHTML = bookings.map(booking => `
+                <tr>
+                    <td>${booking.guestName}</td>
+                    <td>${booking.roomType}</td>
+                    <td>${formatDate(booking.checkIn)}</td>
+                    <td>${formatDate(booking.checkOut)}</td>
+                    <td>${booking.guests}</td>
+                    <td><span class="status confirmed">${booking.status}</span></td>
+                    <td><button class="btn-delete" onclick="deleteBooking(${booking.id})">Cancel</button></td>
+                </tr>
+            `).join('');
+        }
 
-            document.getElementById("output").innerHTML =
-                `Hi ${name} ${lname}<br>
-                 Reservation Confirmed at My Family Hut <br>
-                Guests: ${guest}<br>
-                Table Type: ${tableType}<br>
-                Number of Tables: ${number}<br>
-                Date: ${date}<br>
-                Time: ${time}<br>
-                Email: ${mail}<br>
-                Phone: ${phone}<br><br>
-                 Thank you for booking with us!`;
+        function deleteBooking(id) {
+            if (confirm('Are you sure you want to cancel this booking?')) {
+                const index = bookings.findIndex(b => b.id === id);
+                if (index > -1) {
+                    bookings.splice(index, 1);
+                    renderBookings();
+                }
+            }
+        }
+
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-IN', options);
         }
     </script>
-
-
-                <marquee behaviour="scroll" direction="left"></marquee>
-        </div>
-        </div>
-
-    </body>
+</body>
 </html>
