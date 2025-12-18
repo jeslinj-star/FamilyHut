@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Family Hut Hotel - Online Booking</title>
+    <title>Tamil Cuisine Restaurant - Table Booking</title>
     <style>
         * {
             margin: 0;
@@ -23,38 +23,88 @@
             margin: 0 auto;
             background: white;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
 
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
             padding: 40px;
             text-align: center;
         }
 
-        .header h1 {
+        header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
-        .header p {
+        header p {
             font-size: 1.2em;
-            opacity: 0.9;
+            opacity: 0.95;
         }
 
-        .content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
+        .contact-info {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+            font-size: 1em;
+        }
+
+        .main-content {
             padding: 40px;
         }
 
-        .booking-form {
+        .info-section {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .info-section h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            background: rgba(255,255,255,0.3);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .booking-section {
             background: #f8f9fa;
             padding: 30px;
             border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .booking-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
         }
 
         .form-group {
@@ -64,278 +114,340 @@
         label {
             display: block;
             margin-bottom: 8px;
+            color: #555;
             font-weight: 600;
-            color: #333;
         }
 
-        input, select {
+        input, select, textarea {
             width: 100%;
             padding: 12px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #ddd;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 1em;
             transition: border-color 0.3s;
         }
 
-        input:focus, select:focus {
+        input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: #667eea;
         }
 
-        .btn-submit {
-            width: 100%;
+        .table-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .table-item {
+            background: #e0e0e0;
             padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-2px);
-        }
-
-        .booking-table-section h2 {
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .booking-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
             border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid transparent;
         }
 
-        .booking-table thead {
+        .table-item:hover {
+            transform: scale(1.05);
+        }
+
+        .table-item.vip {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .table-item.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .table-item.vip.selected {
+            border-color: #f5576c;
+        }
+
+        .btn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-        }
-
-        .booking-table th, .booking-table td {
-            padding: 15px;
-            text-align: left;
-        }
-
-        .booking-table tbody tr {
-            border-bottom: 1px solid #e0e0e0;
-            transition: background-color 0.2s;
-        }
-
-        .booking-table tbody tr:hover {
-            background-color: #f8f9fa;
-        }
-
-        .booking-table tbody tr:last-child {
-            border-bottom: none;
-        }
-
-        .status {
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .status.confirmed {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .btn-delete {
-            background: #dc3545;
-            color: white;
+            padding: 15px 40px;
             border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
+            border-radius: 10px;
+            font-size: 1.1em;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: transform 0.3s;
+            width: 100%;
+            margin-top: 20px;
         }
 
-        .btn-delete:hover {
-            background: #c82333;
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
         }
 
-        .empty-message {
+        .menu-section {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .menu-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .menu-item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .success-message {
+            background: #4caf50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .online-order {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 15px;
             text-align: center;
-            padding: 40px;
-            color: #666;
-            font-style: italic;
         }
 
-        @media (max-width: 968px) {
-            .content {
+        .online-order h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .stats {
                 grid-template-columns: 1fr;
             }
-        }
-
-        .room-price {
-            font-size: 14px;
-            color: #666;
-            margin-left: 10px;
+            
+            .table-grid {
+                grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>🏡 Family Hut Hotel</h1>
-            <p>Book Your Perfect Stay With Us</p>
-        </div>
+        <header>
+            <h1>🍽️ Tamil Cuisine Restaurant</h1>
+            <p>Authentic Tamil Nadu Food Experience</p>
+            <div class="contact-info">
+                <p>📍 Karungal, Kanyakumari</p>
+                <p>📞 Phone: 0465120277</p>
+            </div>
+        </header>
 
-        <div class="content">
-            <div class="booking-form">
-                <h2>Make a Reservation</h2>
+        <div class="main-content">
+            <div class="info-section">
+                <h2>Welcome to Our Restaurant!</h2>
+                <p>Experience the authentic flavors of Tamil Nadu in a comfortable and elegant setting.</p>
+                <div class="stats">
+                    <div class="stat-box">
+                        <h3>25</h3>
+                        <p>Total Tables</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>5</h3>
+                        <p>VIP Tables</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>125</h3>
+                        <p>Seating Capacity</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <h2>Popular Tamil Nadu Dishes</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <h3>Dosa Varieties</h3>
+                        <p>Masala, Plain, Rava, Set Dosa</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Idli & Vada</h3>
+                        <p>Soft idlis with sambhar and chutney</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Rice Meals</h3>
+                        <p>Traditional Tamil meals with variety</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Biryani</h3>
+                        <p>Aromatic Tamil style biryani</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Chettinad Specials</h3>
+                        <p>Spicy and flavorful dishes</p>
+                    </div>
+                    <div class="menu-item">
+                        <h3>Filter Coffee</h3>
+                        <p>Authentic South Indian coffee</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="booking-section">
+                <h2>Book Your Table</h2>
                 <form id="bookingForm">
                     <div class="form-group">
-                        <label for="guestName">Guest Name</label>
-                        <input type="text" id="guestName" required placeholder="Enter your full name">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" required placeholder="your.email@example.com">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" required placeholder="+91 XXXXX XXXXX">
+                        <label for="email">Email</label>
+                        <input type="email" id="email">
                     </div>
 
                     <div class="form-group">
-                        <label for="roomType">Room Type</label>
-                        <select id="roomType" required>
-                            <option value="">Select Room Type</option>
-                            <option value="Standard Room" data-price="2500">Standard Room - ₹2,500/night</option>
-                            <option value="Deluxe Room" data-price="4000">Deluxe Room - ₹4,000/night</option>
-                            <option value="Family Suite" data-price="6500">Family Suite - ₹6,500/night</option>
-                            <option value="Premium Suite" data-price="8500">Premium Suite - ₹8,500/night</option>
+                        <label for="date">Date *</label>
+                        <input type="date" id="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Time *</label>
+                        <input type="time" id="time" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guests">Number of Guests *</label>
+                        <select id="guests" required>
+                            <option value="">Select number of guests</option>
+                            <option value="1">1 Person</option>
+                            <option value="2">2 People</option>
+                            <option value="3">3 People</option>
+                            <option value="4">4 People</option>
+                            <option value="5">5 People</option>
+                            <option value="6">6 People</option>
+                            <option value="more">More than 6</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="checkIn">Check-in Date</label>
-                        <input type="date" id="checkIn" required>
+                        <label>Select Your Table (VIP tables highlighted in pink) *</label>
+                        <div class="table-grid" id="tableGrid"></div>
+                        <input type="hidden" id="selectedTable" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="checkOut">Check-out Date</label>
-                        <input type="date" id="checkOut" required>
+                        <label for="notes">Special Requests</label>
+                        <textarea id="notes" rows="4" placeholder="Any special dietary requirements or requests..."></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label for="guests">Number of Guests</label>
-                        <input type="number" id="guests" min="1" max="10" required placeholder="1">
-                    </div>
-
-                    <button type="submit" class="btn-submit">Book Now</button>
+                    <button type="submit" class="btn">Confirm Booking</button>
                 </form>
+
+                <div class="success-message" id="successMessage">
+                    ✅ Booking Confirmed! We'll see you soon at our restaurant.
+                </div>
             </div>
 
-            <div class="booking-table-section">
-                <h2>Current Bookings</h2>
-                <table class="booking-table">
-                    <thead>
-                        <tr>
-                            <th>Guest Name</th>
-                            <th>Room Type</th>
-                            <th>Check-in</th>
-                            <th>Check-out</th>
-                            <th>Guests</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="bookingTableBody">
-                        <tr>
-                            <td colspan="7" class="empty-message">No bookings yet. Make your first reservation!</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="online-order">
+                <h2>🛵 Online Orders Available!</h2>
+                <p>Can't visit us? Order online and enjoy our delicious Tamil Nadu cuisine at home!</p>
+                <button class="btn" onclick="alert('Call us at 0465120277 to place your order!')">Order Now</button>
             </div>
         </div>
     </div>
 
     <script>
-        const bookings = [];
-        const form = document.getElementById('bookingForm');
-        const tableBody = document.getElementById('bookingTableBody');
-        const checkInInput = document.getElementById('checkIn');
-        const checkOutInput = document.getElementById('checkOut');
+        // Generate tables
+        const tableGrid = document.getElementById('tableGrid');
+        const vipTables = [1, 2, 3, 4, 5]; // First 5 tables are VIP
+
+        for (let i = 1; i <= 25; i++) {
+            const tableDiv = document.createElement('div');
+            tableDiv.className = 'table-item';
+            if (vipTables.includes(i)) {
+                tableDiv.classList.add('vip');
+                tableDiv.innerHTML = `<strong>VIP-${i}</strong>`;
+            } else {
+                tableDiv.innerHTML = `<strong>T-${i}</strong>`;
+            }
+            
+            tableDiv.addEventListener('click', function() {
+                document.querySelectorAll('.table-item').forEach(t => t.classList.remove('selected'));
+                this.classList.add('selected');
+                document.getElementById('selectedTable').value = i;
+            });
+            
+            tableGrid.appendChild(tableDiv);
+        }
 
         // Set minimum date to today
         const today = new Date().toISOString().split('T')[0];
-        checkInInput.min = today;
-        checkOutInput.min = today;
+        document.getElementById('date').setAttribute('min', today);
 
-        // Update checkout min date when checkin changes
-        checkInInput.addEventListener('change', function() {
-            checkOutInput.min = this.value;
-            if (checkOutInput.value && checkOutInput.value < this.value) {
-                checkOutInput.value = '';
-            }
-        });
-
-        form.addEventListener('submit', function(e) {
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
-            const booking = {
-                id: Date.now(),
-                guestName: document.getElementById('guestName').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                roomType: document.getElementById('roomType').value,
-                checkIn: document.getElementById('checkIn').value,
-                checkOut: document.getElementById('checkOut').value,
-                guests: document.getElementById('guests').value,
-                status: 'Confirmed'
-            };
-
-            bookings.push(booking);
-            renderBookings();
-            form.reset();
-            alert('Booking confirmed! We look forward to hosting you at Family Hut Hotel.');
-        });
-
-        function renderBookings() {
-            if (bookings.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="7" class="empty-message">No bookings yet. Make your first reservation!</td></tr>';
+            
+            const selectedTable = document.getElementById('selectedTable').value;
+            if (!selectedTable) {
+                alert('Please select a table!');
                 return;
             }
 
-            tableBody.innerHTML = bookings.map(booking => `
-                <tr>
-                    <td>${booking.guestName}</td>
-                    <td>${booking.roomType}</td>
-                    <td>${formatDate(booking.checkIn)}</td>
-                    <td>${formatDate(booking.checkOut)}</td>
-                    <td>${booking.guests}</td>
-                    <td><span class="status confirmed">${booking.status}</span></td>
-                    <td><button class="btn-delete" onclick="deleteBooking(${booking.id})">Cancel</button></td>
-                </tr>
-            `).join('');
-        }
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                guests: document.getElementById('guests').value,
+                table: selectedTable,
+                notes: document.getElementById('notes').value
+            };
 
-        function deleteBooking(id) {
-            if (confirm('Are you sure you want to cancel this booking?')) {
-                const index = bookings.findIndex(b => b.id === id);
-                if (index > -1) {
-                    bookings.splice(index, 1);
-                    renderBookings();
-                }
-            }
-        }
-
-        function formatDate(dateString) {
-            const options = { year: 'numeric', month: 'short', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString('en-IN', options);
-        }
+            console.log('Booking Data:', formData);
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            document.querySelectorAll('.table-item').forEach(t => t.classList.remove('selected'));
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+            
+            // Scroll to success message
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+        });
     </script>
 </body>
 </html>
